@@ -103,8 +103,7 @@ public class FrameActivity extends BaseActivity<FrameActivityPresenter, FrameAct
     @Override
     public void onPermissionsDenied(int requestCode, List<String> list) {
         // Some permissions have been denied
-        // 请求权限被拒绝
-        // ...
+        // 请求权限被拒
         Toast.makeText(this, "请求权限被拒绝", Toast.LENGTH_LONG).show();
     }
 
