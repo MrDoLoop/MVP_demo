@@ -6,4 +6,6 @@ package www.doloop.com.mvp_demo.adapter;
 
 public interface OnDataReadyListener<T> {
     void onDataReady(T data);
+
+    void onError();
 }

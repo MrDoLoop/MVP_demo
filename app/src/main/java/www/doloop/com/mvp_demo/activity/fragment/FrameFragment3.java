@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
@@ -63,9 +64,9 @@ public class FrameFragment3 extends BaseFragment<FragmentPresenter, FragmentView
         //设置是否可以上拉刷新
         //mPullLoadMoreRecyclerView.setPushRefreshEnable(false);
         //显示下拉刷新
-        mPullLoadMoreRecyclerView.setRefreshing(true);
+        //mPullLoadMoreRecyclerView.setRefreshing(true);
         //设置上拉刷新文字
-        mPullLoadMoreRecyclerView.setFooterViewText("loading");
+        mPullLoadMoreRecyclerView.setFooterViewText("正在加载更多");
         //设置上拉刷新文字颜色
         //mPullLoadMoreRecyclerView.setFooterViewTextColor(R.color.white);
         //设置加载更多背景色
@@ -77,7 +78,7 @@ public class FrameFragment3 extends BaseFragment<FragmentPresenter, FragmentView
         mPullLoadMoreRecyclerView.setAdapter(mRecyclerViewAdapter);
 
 
-        mPresenter.loadData();
+        mPresenter.refreshData();
         return rootView;
     }
     
@@ -89,11 +90,7 @@ public class FrameFragment3 extends BaseFragment<FragmentPresenter, FragmentView
 
     @Override
     public void showLoading(boolean show) {
-        if(show) {
-            mProgressDialog.show();
-        } else {
-            mProgressDialog.dismiss();
-        }
+        mPullLoadMoreRecyclerView.setRefreshing(show);
     }
 
     @Override
@@ -104,17 +101,18 @@ public class FrameFragment3 extends BaseFragment<FragmentPresenter, FragmentView
 
     @Override
     public void showError() {
-
+        mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+        Toast.makeText(getContext(),"数据读取失败",  Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRefresh() {
         mPullLoadMoreRecyclerView.setRefreshing(true);
-        mPresenter.loadData();
+        mPresenter.refreshData();
     }
 
     @Override
     public void onLoadMore() {
-        mPresenter.loadData();
+        mPresenter.loadMore();
     }
 }

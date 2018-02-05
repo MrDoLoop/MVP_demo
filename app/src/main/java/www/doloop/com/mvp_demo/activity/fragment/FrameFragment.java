@@ -55,13 +55,13 @@ public class FrameFragment extends BaseFragment<FragmentPresenter, FragmentView>
         mPracticalRecyclerView.setRefreshListener(new PracticalRecyclerView.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.loadData();
+                mPresenter.refreshData();
             }
         });
         mPracticalRecyclerView.setLoadMoreListener(new PracticalRecyclerView.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                mPresenter.loadData();
+                mPresenter.refreshData();
             }
         });
 
@@ -84,7 +84,7 @@ public class FrameFragment extends BaseFragment<FragmentPresenter, FragmentView>
             }
         });
 
-        mPresenter.loadData();
+        mPresenter.refreshData();
         return rootView;
     }
     

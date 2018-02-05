@@ -73,7 +73,7 @@ public class FrameFragment2 extends BaseFragment<FragmentPresenter, FragmentView
             @Override
             public void run() {
                 mRecyclerView.setRefreshing(true);
-                mPresenter.loadData();
+                mPresenter.refreshData();
             }
         });
         return rootView;

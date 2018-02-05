@@ -14,13 +14,33 @@ public class FragmentPresenter extends BasePresenter<FragmentView, FragmentModel
         return new FragmentModel();
     }
 
-    public void loadData() {
-        getView().showLoading(true);
+    public void loadMore() {
         getModel().requestData(new OnDataReadyListener<Book>() {
             @Override
             public void onDataReady(Book data) {
                 getView().showLoading(false);
                 getView().showData(data);
+            }
+
+            @Override
+            public void onError() {
+                getView().showError();
+            }
+        });
+    }
+
+    public void refreshData() {
+        getView().showLoading(true);
+        getModel().requestData(new OnDataReadyListener<Book>() {
+            @Override
+            public void onDataReady(Book data) {
+                getView().showLoading(true);
+                getView().showData(data);
+            }
+
+            @Override
+            public void onError() {
+                getView().showError();
             }
         });
     }

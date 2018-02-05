@@ -33,6 +33,9 @@ public class FragmentModel implements BaseModelInter {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable e) {
                 super.onFailure(call, e);
+                if(l != null) {
+                    l.onError();
+                }
             }
         });
     }

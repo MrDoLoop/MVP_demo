@@ -24,6 +24,11 @@ public class FrameActivityPresenter extends BasePresenter<FrameActivity, FrameAc
                     getView().showData(data);
                 }
             }
+
+            @Override
+            public void onError() {
+
+            }
         });
     }
 }
